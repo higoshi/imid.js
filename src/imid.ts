@@ -1,11 +1,11 @@
 export default function(domain: string, path: string) {
-    const cookie = ` ${document.cookie}`;
+    const cookie: string = ` ${document.cookie}`;
 
-    const imidExp = /\simid=([A-Za-z0-9\-_]{22})/;
-    const imidCreatedExp = /\simid_created=(\d+)/;
+    const imidExp: RegExp = /\simid=([A-Za-z0-9\-_]{22})/;
+    const imidCreatedExp: RegExp = /\simid_created=(\d+)/;
 
-    const imidMatched = cookie.match(imidExp);
-    const imidCreatedMatch = cookie.match(imidCreatedExp);
+    const imidMatched: RegExpMatchArray = cookie.match(imidExp);
+    const imidCreatedMatch: RegExpMatchArray = cookie.match(imidCreatedExp);
 
     let imid: string;
     let imidCreated: string;
@@ -21,13 +21,13 @@ export default function(domain: string, path: string) {
         do {
             imid = '';
             if ('crypto' in window && 'Uint8Array' in window) {
-              const array = new Uint8Array(22);
+              const array: Uint8Array = new Uint8Array(22);
               crypto.getRandomValues(array);
               array.forEach(function(value) {
                 imid += keywords[value & 63];
               });
             } else {
-              for (let i = 22; i > 0; i-- ) imid += keywords[keywords.length * Math.random() << 0];
+              for (let i: number = 22; i > 0; i-- ) imid += keywords[keywords.length * Math.random() << 0];
             }
         } while (imid.charAt(0) === '-');
     }
@@ -38,7 +38,7 @@ export default function(domain: string, path: string) {
         imidCreated = (new Date().getTime() / 1000 << 0) + '';
     }
 
-    const sufix = `expires=${new Date(new Date().getTime() + expire).toUTCString()};` + (domain ? ` domain=${domain};` : '') + (path ? ` path=${path};` : '');
+    const sufix: string = `expires=${new Date(new Date().getTime() + expire).toUTCString()};` + (domain ? ` domain=${domain};` : '') + (path ? ` path=${path};` : '');
 
     document.cookie = `imid=${imid}; ${sufix}`;
     document.cookie = `imid_created=${imidCreated}; ${sufix}`;
