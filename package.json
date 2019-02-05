@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "main": "dist/imid.js",
   "scripts": {
-    "watch": "npx tsc -w",
-    "build": "npx tsc"
+    "build": "npx rollup --config rollup.config.js",
+    "watch": "npx rollup --watch --config rollup.config.js"
   },
   "dependencies": {
+    "rollup": "^1.1.2",
+    "rollup-plugin-terser": "^4.0.3",
+    "rollup-plugin-typescript2": "^0.19.2",
     "typescript": "^3.3.1"
   }
 }
