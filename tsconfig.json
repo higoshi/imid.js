@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"module": "system",
+		"outFile": "dist/imid.js"
+	},
+	"include": [
+		"src/imid.ts"
+	]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "imid",
+  "version": "1.0.0",
+  "main": "dist/imid.js",
+  "scripts": {
+    "watch": "npx tsc -w",
+    "build": "npx tsc"
+  },
+  "dependencies": {
+    "typescript": "^3.3.1"
+  }
+}
